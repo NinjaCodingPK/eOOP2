@@ -55,8 +55,13 @@ public abstract class Note implements Cloneable {
     }
 
     @Override
-    protected Note clone() throws CloneNotSupportedException {
-        return (Note)super.clone();
+    protected Note clone() {
+        try {
+            return (Note)super.clone();
+        } catch (CloneNotSupportedException e) {
+            // e.printStackTrace();
+            return null;
+        }
     }
 
     public String getName() {

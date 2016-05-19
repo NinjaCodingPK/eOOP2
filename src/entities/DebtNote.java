@@ -26,26 +26,6 @@ public class DebtNote extends Note implements Cloneable {
         setDebts(debts);
     }
 
-    @Override
-    public String toString() {
-        return "DebtNote {" + super.toString() +
-                "debts=" + debts.toString() +
-                '}';
-    }
-
-    @Override
-    public DebtNote clone() {
-        DebtNote temp = null;
-        try {
-            temp = (DebtNote) super.clone();
-            temp.debts = (HashMap<String, Integer>) this.debts.clone();
-
-            return temp;
-        } catch (CloneNotSupportedException e) {
-            //e.printStackTrace();
-            return null;
-        }
-    }
 
     public void addDebt(String name, int value) {
         this.debts.put(name, value);
@@ -58,5 +38,42 @@ public class DebtNote extends Note implements Cloneable {
 
     public void setDebts(HashMap<String, Integer> debts) {
         this.debts = (HashMap<String, Integer>) debts.clone();
+    }
+
+    @Override
+    public String toString() {
+        return "DebtNote {" + super.toString() +
+                "debts=" + debts.toString() +
+                '}';
+    }
+
+    @Override
+    public DebtNote clone() {
+        DebtNote temp = null;
+            temp = (DebtNote) super.clone();
+            temp.debts = (HashMap<String, Integer>) this.debts.clone();
+
+            return temp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        DebtNote debtNote = (DebtNote) o;
+
+        return getDebts() != null ? getDebts().equals(debtNote.getDebts()) : debtNote.getDebts() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getDebts() != null ? getDebts().hashCode() : 0);
+        return result + super.hashCode();
     }
 }
