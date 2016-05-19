@@ -23,7 +23,7 @@ public class DebtNote extends Note implements Cloneable {
 
     public DebtNote(String name, String nick, String email, String icq, String phoneNumber, HashMap<String, Integer> debts) {
         super(name, nick, email, icq, phoneNumber);
-        this.debts = debts;
+        setDebts(debts);
     }
 
     @Override
@@ -57,6 +57,6 @@ public class DebtNote extends Note implements Cloneable {
     }
 
     public void setDebts(HashMap<String, Integer> debts) {
-        this.debts = debts;
+        this.debts = (HashMap<String, Integer>) debts.clone();
     }
 }
